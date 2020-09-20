@@ -20,6 +20,9 @@ public class Recipe {
     @Lob
     private byte[] image;
 
+    @Enumerated(value = EnumType.STRING)
+    private Difficulty difficulty;
+
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
 
@@ -28,9 +31,6 @@ public class Recipe {
 
     public Recipe() {
     }
-    //todo add
-    //private Difficulty difficulty;
-
 
     public Long getId() {
         return Id;
