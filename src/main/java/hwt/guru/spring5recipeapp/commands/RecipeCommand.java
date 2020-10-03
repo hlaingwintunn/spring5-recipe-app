@@ -1,5 +1,6 @@
 package hwt.guru.spring5recipeapp.commands;
 
+import hwt.guru.spring5recipeapp.converters.IngredientToIngredientCommand;
 import hwt.guru.spring5recipeapp.model.Difficulty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,7 @@ public class RecipeCommand {
     private String source;
     private String url;
     private String directions;
-    private Set<IngredientCommand> ingredients = new HashSet<>();
+    private Set<IngredientToIngredientCommand.IngredientCommand> ingredients = new HashSet<>();
     private Difficulty difficulty;
     private NotesCommand notes;
     private Set<CategoryCommand> categories = new HashSet<>();

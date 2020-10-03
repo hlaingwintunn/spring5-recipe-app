@@ -1,17 +1,22 @@
 package hwt.guru.spring5recipeapp.converters;
 
-import hwt.guru.spring5recipeapp.commands.IngredientCommand;
+import hwt.guru.spring5recipeapp.commands.UnitOfMeasureCommand;
 import hwt.guru.spring5recipeapp.model.Ingredient;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 /**
  * Created by jt on 6/21/17.
  */
 @Component
-public class IngredientToIngredientCommand implements Converter<Ingredient, IngredientCommand> {
+public class IngredientToIngredientCommand implements Converter<Ingredient, IngredientToIngredientCommand.IngredientCommand> {
 
     private final UnitOfMeasureToUnitOfMeasureCommand uomConverter;
 
@@ -31,7 +36,17 @@ public class IngredientToIngredientCommand implements Converter<Ingredient, Ingr
         ingredientCommand.setId(ingredient.getId());
         ingredientCommand.setAmount(ingredient.getAmount());
         ingredientCommand.setDescription(ingredient.getDescription());
-        ingredientCommand.setUnitOfMeasure(uomConverter.convert(ingredient.getUom()));
+        ingredientCommand.setUom(uomConverter.convert(ingredient.getUom()));
         return ingredientCommand;
+    }
+
+    @Setter
+    @Getter
+    @NoArgsConstructor
+    public static class IngredientCommand {
+        private Long id;
+        private String description;
+        private BigDecimal amount;
+        private UnitOfMeasureCommand uom;
     }
 }

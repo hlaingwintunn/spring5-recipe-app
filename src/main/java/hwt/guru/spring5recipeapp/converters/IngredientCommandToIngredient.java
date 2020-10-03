@@ -1,6 +1,5 @@
 package hwt.guru.spring5recipeapp.converters;
 
-import hwt.guru.spring5recipeapp.commands.IngredientCommand;
 import hwt.guru.spring5recipeapp.model.Ingredient;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Component;
  * Created by jt on 6/21/17.
  */
 @Component
-public class IngredientCommandToIngredient implements Converter<IngredientCommand, Ingredient> {
+public class IngredientCommandToIngredient implements Converter<IngredientToIngredientCommand.IngredientCommand, Ingredient> {
 
     private final UnitOfMeasureCommandToUnitOfMeasure uomConverter;
 
@@ -20,7 +19,7 @@ public class IngredientCommandToIngredient implements Converter<IngredientComman
 
     @Nullable
     @Override
-    public Ingredient convert(IngredientCommand source) {
+    public Ingredient convert(IngredientToIngredientCommand.IngredientCommand source) {
         if (source == null) {
             return null;
         }
@@ -29,7 +28,7 @@ public class IngredientCommandToIngredient implements Converter<IngredientComman
         ingredient.setId(source.getId());
         ingredient.setAmount(source.getAmount());
         ingredient.setDescription(source.getDescription());
-        ingredient.setUom(uomConverter.convert(source.getUnitOfMeasure()));
+        ingredient.setUom(uomConverter.convert(source.getUom()));
         return ingredient;
     }
 }
