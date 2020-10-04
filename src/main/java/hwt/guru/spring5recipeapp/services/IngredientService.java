@@ -5,4 +5,6 @@ import hwt.guru.spring5recipeapp.model.Ingredient;
 
 public interface IngredientService {
     IngredientCommand findByRecipeIdAndIngredientId(Long recipeId, Long ingredientId);
+
+    IngredientCommand saveIngredientCommand(IngredientCommand ingredientCommand);
 }
