@@ -1,5 +1,6 @@
 package hwt.guru.spring5recipeapp.converters;
 
+import hwt.guru.spring5recipeapp.commands.IngredientCommand;
 import hwt.guru.spring5recipeapp.commands.UnitOfMeasureCommand;
 import hwt.guru.spring5recipeapp.model.Ingredient;
 import hwt.guru.spring5recipeapp.model.Recipe;
@@ -32,13 +33,13 @@ public class IngredientCommandToIngredientTest {
 
     @Test
     public void testEmptyObject() throws Exception {
-        assertNotNull(converter.convert(new IngredientToIngredientCommand.IngredientCommand()));
+        assertNotNull(converter.convert(new IngredientCommand()));
     }
 
     @Test
     public void convert() throws Exception {
         //given
-        IngredientToIngredientCommand.IngredientCommand command = new IngredientToIngredientCommand.IngredientCommand();
+        IngredientCommand command = new IngredientCommand();
         command.setId(ID_VALUE);
         command.setAmount(AMOUNT);
         command.setDescription(DESCRIPTION);
@@ -61,7 +62,7 @@ public class IngredientCommandToIngredientTest {
     @Test
     public void convertWithNullUOM() throws Exception {
         //given
-        IngredientToIngredientCommand.IngredientCommand command = new IngredientToIngredientCommand.IngredientCommand();
+        IngredientCommand command = new IngredientCommand();
         command.setId(ID_VALUE);
         command.setAmount(AMOUNT);
         command.setDescription(DESCRIPTION);

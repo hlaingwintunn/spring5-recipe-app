@@ -1,5 +1,6 @@
 package hwt.guru.spring5recipeapp.converters;
 
+import hwt.guru.spring5recipeapp.commands.IngredientCommand;
 import hwt.guru.spring5recipeapp.commands.UnitOfMeasureCommand;
 import hwt.guru.spring5recipeapp.model.Ingredient;
 import lombok.Getter;
@@ -16,7 +17,7 @@ import java.math.BigDecimal;
  * Created by jt on 6/21/17.
  */
 @Component
-public class IngredientToIngredientCommand implements Converter<Ingredient, IngredientToIngredientCommand.IngredientCommand> {
+public class IngredientToIngredientCommand implements Converter<Ingredient, IngredientCommand> {
 
     private final UnitOfMeasureToUnitOfMeasureCommand uomConverter;
 
@@ -37,16 +38,9 @@ public class IngredientToIngredientCommand implements Converter<Ingredient, Ingr
         ingredientCommand.setAmount(ingredient.getAmount());
         ingredientCommand.setDescription(ingredient.getDescription());
         ingredientCommand.setUom(uomConverter.convert(ingredient.getUom()));
+        if(ingredient.getRecipe() != null) {
+            ingredientCommand.setRecipeId(ingredient.getRecipe().getId());
+        }
         return ingredientCommand;
-    }
-
-    @Setter
-    @Getter
-    @NoArgsConstructor
-    public static class IngredientCommand {
-        private Long id;
-        private String description;
-        private BigDecimal amount;
-        private UnitOfMeasureCommand uom;
     }
 }

@@ -1,6 +1,7 @@
 package hwt.guru.spring5recipeapp.converters;
 
 import hwt.guru.spring5recipeapp.commands.CategoryCommand;
+import hwt.guru.spring5recipeapp.commands.IngredientCommand;
 import hwt.guru.spring5recipeapp.commands.NotesCommand;
 import hwt.guru.spring5recipeapp.commands.RecipeCommand;
 import hwt.guru.spring5recipeapp.model.Difficulty;
@@ -74,10 +75,10 @@ public class RecipeCommandToRecipeTest {
         recipeCommand.getCategories().add(category);
         recipeCommand.getCategories().add(category2);
 
-        IngredientToIngredientCommand.IngredientCommand ingredient = new IngredientToIngredientCommand.IngredientCommand();
+        IngredientCommand ingredient = new IngredientCommand();
         ingredient.setId(INGRED_ID_1);
 
-        IngredientToIngredientCommand.IngredientCommand ingredient2 = new IngredientToIngredientCommand.IngredientCommand();
+        IngredientCommand ingredient2 = new IngredientCommand();
         ingredient2.setId(INGRED_ID_2);
 
         recipeCommand.getIngredients().add(ingredient);
