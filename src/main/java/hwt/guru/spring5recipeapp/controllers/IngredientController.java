@@ -9,10 +9,7 @@ import hwt.guru.spring5recipeapp.services.UnitOfMeasureService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @Controller
@@ -61,7 +58,7 @@ public class IngredientController {
     }
 
 
-    @GetMapping("recipe/{recipeId}/ingredient/new")
+    @GetMapping("/recipe/{recipeId}/ingredient/new")
     public String newIngredient(@PathVariable String recipeId, Model model){
 
         //make sure we have a good id value
@@ -79,5 +76,12 @@ public class IngredientController {
         model.addAttribute("uomList",  unitOfMeasureService.listAllUoms());
 
         return "recipe/ingredient/ingredientform";
+    }
+
+    @GetMapping("/recipe/{recipeId}/ingredient/{id}/delete")
+    public String deleteIngredient(@PathVariable String recipeId, @PathVariable String id) {
+        log.debug("Deleting Ingredient: Id -> {}", id);
+        ingredientService.deleteById(Long.valueOf(recipeId), Long.valueOf(id));
+        return "redirect:/recipe/" +recipeId+ "/ingredients";
     }
 }
