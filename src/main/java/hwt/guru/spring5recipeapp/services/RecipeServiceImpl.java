@@ -5,6 +5,7 @@ import hwt.guru.spring5recipeapp.commands.RecipeCommand;
 import hwt.guru.spring5recipeapp.converters.IngredientToIngredientCommand;
 import hwt.guru.spring5recipeapp.converters.RecipeCommandToRecipe;
 import hwt.guru.spring5recipeapp.converters.RecipeToRecipeCommand;
+import hwt.guru.spring5recipeapp.exceptions.NotFoundException;
 import hwt.guru.spring5recipeapp.model.Ingredient;
 import hwt.guru.spring5recipeapp.model.Recipe;
 import hwt.guru.spring5recipeapp.repositories.RecipeRepository;
@@ -42,7 +43,8 @@ public class RecipeServiceImpl implements RecipeService {
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
 
         if(!recipeOptional.isPresent()) {
-            throw new RuntimeException("Recipe not found1");
+            throw new NotFoundException("Recipe not found. For ID value : "+ id.toString());
+//            throw new RuntimeException("Recipe not found");
         }
         return recipeOptional.get();
     }
